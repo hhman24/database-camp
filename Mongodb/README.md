@@ -249,7 +249,7 @@ Một trường hợp khá hay khác mà mình đọc được trong document c�
 
 Về mặt khái niệm thì Fuzzy Search là kỹ thuật giúp chúng ta tìm kiếm kết quả có nội dung gần giống với nội dung chúng ta nhập vào.
 
-* Levenshtein Distance (Edit Distance): Thuật toán Levenshtein distance đo khoảng cách giữa hai chuỗi bằng cách đếm số lần sửa đổi (chèn, xóa hoặc thay thế một ký tự) cần thiết để biến một chuỗi thành chuỗi kia. Kết quả cho biết mức độ giống nhau giữa hai chuỗi.
+* Levenshtein Distance (Edit Distance): Thuật toán Levenshtein distance đo khoảPng cách giữa hai chuỗi bằng cách đếm số lần sửa đổi (chèn, xóa hoặc thay thế một ký tự) cần thiết để biến một chuỗi thành chuỗi kia. Kết quả cho biết mức độ giống nhau giữa hai chuỗi.
 
 * Jaro-Winkler Distance: Thuật toán Jaro-Winkler distance cũng đo khoảng cách giữa hai chuỗi, tuy nhiên, nó tập trung vào việc so sánh các ký tự gần nhau và đánh giá các ký tự giống nhau ở phần đầu của chuỗi một cách cao hơn.
 

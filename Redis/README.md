@@ -28,4 +28,4 @@ Cách giải quyết:
 
 * Nếu dữ liệu quan trọng, set vĩnh viễn setCacheWithExpiration
 * Tự động gia hạn cache, cron job
-* Mutex, nếu 
+* Mutex, nếu
