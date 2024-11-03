@@ -175,7 +175,7 @@ Weight có thể được khai báo trong quá trình tạo Index, giúp cho bi�
 db.collections.insertMany( [
 {
   name: "Living Spaces Vocabulary", // ⏬ Kitchen ở dưới `description`
-  description: "Vocabulary about types of rooms in the house such as Living Room, Kitchen, Bath Room, Dinning Room, etc.",  
+  description: "Vocabulary about types of rooms in the house such as Living Room, Kitchen, Bath Room, Dinning Room, etc.",
   level: "easy",
 },
 {
@@ -238,7 +238,6 @@ Chọn ngôn ngữ phù hợp sẽ giúp cải thiện được hiệu năng c�
 db.quotes.createIndex(
    { quote: "text" },
    { default_language: "spanish" }
-)
 ```
 
 5.6 Multiples languages
@@ -262,3 +261,44 @@ Về mặt khái niệm thì Fuzzy Search là kỹ thuật giúp chúng ta tìm 
 * Cosine Similarity: Cosine similarity đo độ tương đồng giữa hai vector từ trong không gian vector. Nó thường được sử dụng trong tìm kiếm văn bản mờ và trong các ứng dụng liên quan đến phân tích văn bản.
 
 * TF-IDF (Term Frequency-Inverse Document Frequency): TF-IDF là một phương pháp đánh giá độ quan trọng của một từ trong một tài liệu so với tất cả các tài liệu khác. Nó cũng có thể được sử dụng để tìm kiếm mờ trong các tài liệu văn bản.
+
+### Why we should avoid using Mongoose .save() method for updates
+
+Mongoose is a MongoDB object modeling tool designed to work in an asynchronous environment. It makes it extremely easy to interact with MongoDB for server-side applications (for example, ones built with express) by manipulating mongo documents like JavaScript objects.
+
+==> 💥 Reason? Atomicity
+
+### ⚛️ Atomicity
+
+In simple terms means that any entity (normal variables, objects, etc.) must be updated in one single operation. That is, there are no midways
+
+![alt text](../assets/mongoDB-11.png)
+
+As you can see that the update in wallet amount is a 4 step process
+
+1. Getting Wallet from Database.
+2. Saving data in `foundWallet` variable.
+3. Mutating the variable (i.e reducing amount by 10).
+4. Saving the mutated object into the Database.
+
+As you can see the update operation is not atomic in nature, you’ll have 2 DB calls (one to get wallet another to update)
+
+The Idea is simple what if database is changed before you call .save()?
+
+### Các lợi thế của MongoDB so với RDBMS
+
+Ít Schema hơn: MongoDB là một cơ sở dữ liệu dựa trên Document, trong đó một Collection giữ các Document khác nhau.
+
+Không có các Join phức tạp.Khả năng truy vấn sâu hơn. MongoDB hỗ trợ các truy vấn động trên các Document bởi sử dụng một ngôn ngữ truy vấn dựa trên Document mà mạnh mẽ như SQL.
+
+==> Tuning MongoDB dễ dàng mở rộng.
+
+### Why should use
+
+1. Kho lưu định hướng Document: Dữ liệu được lưu trong các tài liệu kiểu JSON
+2. Lập chỉ mục trên bất kỳ thuộc tính nào
+3. Replication và tính khả dụng cao
+4. Tự động Shard
+5. Các truy vấn đa dạng
+6. Cập nhật nhanh hơn
+7. Sự hỗ trợ chuyên nghiệp bởi MongoDB
